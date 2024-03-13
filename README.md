@@ -1,0 +1,2 @@
+# Bevasarlos-feladat
+testvérek összefognak

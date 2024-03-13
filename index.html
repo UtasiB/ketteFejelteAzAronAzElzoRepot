@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="hu" ng-app="bevasarlo">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bevásárló lista</title>
+
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/style.css">
+
+</head>
+<body>
+    <div class="title">
+      <h1>{{title}}</h1>
+    </div>
+    
+
+<div class="minden">
+      <div class="Kategoria">
+        <span>Kategória
+        </span>
+        <div class="input-group mb-3">
+          <select class="form-select" id="kategoria" onchange="kategoriaValtozas()">
+            <option selected>Válassz...</option>
+        </select>
+          </div>
+      </div>
+    
+      <div class="Termeknev">
+        <span>
+            Terméknév
+        </span>
+        <div class="input-group mb-3">
+            <select class="form-select" id="termeknev" onchange="termeknevValtozas(), mennyisegValtozas()">
+            <option selected>Válassz...</option>
+            
+            </select>
+        </div>
+      </div>
+      <div class="Mennyiseg mb-3">
+          <span>Mennyiség</span>
+          <input type="number" class="form-control" value="0" id="mennyiseg" onchange="mennyisegValtozas()">
+      </div>
+
+      <div class="Egysegar">
+          <span>Egység ár</span>
+          <input type="number" class="form-control" readonly id="egysegar">
+      </div>
+
+      <div class="Osszeg">
+        <span>Összeg</span>
+        <input type="text" class="form-control" readonly id="osszeg">
+    </div>
+
+    <button type="button" class="btn btn-success" id="plusz" onclick="adatHozzaadas(), fizetendoSzamitas()">+</button>
+
+</div> 
+<div class=tablazat>
+    <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">Kategória</th>
+            <th scope="col">Terméknév</th>
+            <th scope="col">Mennyiség</th>
+            <th scope="col">Egységár</th>
+            <th scope="col">Összeg</th>
+            <th scope="col">Művelet</th>
+          </tr>
+        </thead>
+        <tbody>
+          
+         
+        </tbody>
+      </table>
+</div>
+<div>
+    <button type="button" class="btn btn-danger"  onclick="teljesTorles()">Törlés</button>
+    <button type="button" class="btn btn-success" onclick="mentes()">Mentés</button>
+   
+</div>
+
+<footer>
+  <span>Fizetendő</span>
+  <input type="text" class="form-control" readonly id="fizetendo">
+</footer>
+       
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/angular.min.js"></script>
+    <script src="js/angular-route.min.js"></script>
+    <script src="js/axios.min.js"></script>
+    <script src="js/ng-notify.min.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>
