@@ -68,20 +68,22 @@ axios.get('http://localhost:3000/hozzaadottak').then(res => {
         frissit.value = "()";
         frissit.onclick = function frissites(){
             td5.innerHTML = mennyiseg.value * user.unitprice;
+            
         };
         
         var mennyiseg = document.createElement('input');
         mennyiseg.type = "number";
         mennyiseg.className = "form-control";
         mennyiseg.value = user.quantity;
+       
 
         
-        
+        ar = user.unitprice * user.quantity;
 
         td1.innerHTML = user.category;
         td2.innerHTML = user.productname;
         td4.innerHTML = user.unitprice;
-        td5.innerHTML = user.unitprice * user.quantity;
+        td5.innerHTML = ar;
         
 
         td3.appendChild(mennyiseg);
@@ -193,20 +195,24 @@ function adatHozzaadas(){
 
 function teljesTorles(){
     tbody.remove();
+    hozzaadottItemek = [];
+    axios.delete('http://localhost:3000/hozzaadottak');
 }
 
 function mentes() {
     let promises = [];
-
+    axios.delete('http://localhost:3000/hozzaadottak');
     for (let i = 0; i < hozzaadottItemek.length; i++) {
-        let data = {
+        var data = {
             category: hozzaadottItemek[i].category,
             productname: hozzaadottItemek[i].productname,
             quantity: hozzaadottItemek[i].quantity,
             unitprice: hozzaadottItemek[i].unitprice,
             price: hozzaadottItemek[i].price
         };
-        promises.push(
+        console.log(data);
+        //promises.push(
+         
             axios.post('http://localhost:3000/hozzaadottak', data)
                 .then(response => {
                     console.log("Adat sikeresen elmentve:", response.data);
@@ -214,15 +220,15 @@ function mentes() {
                 .catch(error => {
                     console.error("Hiba történt az adat mentése közben:", error);
                 })
-        );
+        //);
     }
-    Promise.all(promises)
+    /*Promise.all(promises)
         .then(() => {
             console.log("Minden adat sikeresen elmentve.");
         })
         .catch(error => {
             console.error("Hiba történt a mentés során:", error);
-        });
+        });*/
 }
 
 
