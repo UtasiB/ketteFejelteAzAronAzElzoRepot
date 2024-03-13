@@ -104,7 +104,7 @@ function termeknevValtozas() {
     let selectedCategory = kategoria.value;
     let filteredProducts = itemek.filter(item => item.category === selectedCategory);
  
-    termeknev.innerHTML = '<option selected>Válassz...</option>'; // Clear previous options
+    termeknev.innerHTML = '<option selected>Válassz...</option>'; 
  
     filteredProducts.forEach(product => {
         let optionProduct = document.createElement('option');
@@ -112,7 +112,7 @@ function termeknevValtozas() {
         optionProduct.innerText = product.productname;
         termeknev.appendChild(optionProduct);
     });
-    
+ 
     egysegar.value = filteredProducts.length > 0 ? filteredProducts[0].price : 0;
 }
 
