@@ -115,6 +115,10 @@ function mennyisegValtozas(){
 }
 
 function kategoriaValtozas(){
+    egysegar.value = 0;
+    mennyisegID.value = 0;
+    osszeg.value = 0;
+
     let selectedCategory = kategoria.value;
     let filteredProducts = itemek.filter(item => item.category === selectedCategory);
  
