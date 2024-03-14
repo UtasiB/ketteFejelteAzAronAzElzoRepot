@@ -12,6 +12,7 @@ var pool  = mysql.createPool({
   database        : 'bevasarlolista'
 });
 
+app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 app.use(cors());
 
@@ -39,6 +40,7 @@ app.get('/hozzaadottak', (req, res) => {
 
 app.post('/hozzaadottak', (req, res)=>{
   let data = req.body;
+  console.log(req.body);
   pool.query(`INSERT INTO hozzaadottak VALUES(null, '${data.category}', '${data.productname}', '${data.quantity}', '${data.unitprice}', '${data.price}')`, (error, results) => {
       if (error) res.status(500).send(error);
       res.status(200).send(results);

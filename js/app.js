@@ -68,7 +68,6 @@ axios.get('http://localhost:3000/hozzaadottak').then(res => {
         frissit.value = "()";
         frissit.onclick = function frissites(){
             td5.innerHTML = mennyiseg.value * user.unitprice;
-            
         };
         
         var mennyiseg = document.createElement('input');
@@ -200,7 +199,6 @@ function teljesTorles(){
 }
 
 function mentes() {
-    let promises = [];
     axios.delete('http://localhost:3000/hozzaadottak');
     for (let i = 0; i < hozzaadottItemek.length; i++) {
         var data = {
