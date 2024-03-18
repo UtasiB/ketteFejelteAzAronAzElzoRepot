@@ -1,10 +1,50 @@
 body{
+    margin-top: 30px;
     margin-left: 20px;
     margin-right: 20px;
-    background-color: lightgrey;
+    background-color: black;
+    color: white;
     
 }
+#kategoria{
+    background-color: goldenrod;
+    color: white;
+}
+#termeknev{
+    background-color: goldenrod;
+    color: white;
+}
+#mennyiseg{
+    background-color: goldenrod;
+    color: white;
+}
+#egysegar{
+    background-color: goldenrod;
+    color: white;
+}
+#osszeg{
+    background-color: goldenrod;
+    color: white;
+}
 
+#fizetendo{
+    background-color: goldenrod;
+    color: white;
+    text-align: center;
+    
+   
+}
+
+.gombok{
+    display: flex;
+    justify-content: center;
+    
+    
+}
+footer{
+    text-align: center;
+    margin: 50px;
+}
 .minden{
     display: flex;
    justify-content: center;

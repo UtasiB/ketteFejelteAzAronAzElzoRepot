@@ -9,6 +9,7 @@ let itemek = [];
 let hozzaadottItemek = [];
 let vegosszeg = 0;
 let fizetendo = document.querySelector('#fizetendo');
+let osszegek = [];
 
 
 app.run(function($rootScope){
@@ -60,14 +61,32 @@ axios.get('http://localhost:3000/hozzaadottak').then(res => {
         btn.className = "btn btn-danger";
         btn.value = "-";
         btn.onclick = function torles(){
+           let termeknev = user.kategoria;
+            for (let i = 0; i < hozzaadottItemek.length; i++) {
+                if (hozzaadottItemek[i].kategoria == termeknev) {
+                    hozzaadottItemek.splice(i,i);
+                }
+                
+            }
             tr.remove();
         }
+
+        let ertek = user.quantity * user.unitprice;
         var frissit = document.createElement('input');
         frissit.type = "button";
         frissit.className = "btn btn-success";
         frissit.value = "()";
         frissit.onclick = function frissites(){
-            td5.innerHTML = mennyiseg.value * user.unitprice;
+            for (let i = 0; i < osszegek.length; i++) {
+                if (osszegek[i] == ertek) {
+                    
+                    osszegek[i] = mennyiseg.value * user.unitprice;
+                    td5.innerHTML = mennyiseg.value * user.unitprice;
+                    fizetendoSzamitas();
+                }
+                
+            }
+            
         };
         
         var mennyiseg = document.createElement('input');
@@ -78,7 +97,7 @@ axios.get('http://localhost:3000/hozzaadottak').then(res => {
 
         
         ar = user.unitprice * user.quantity;
-
+        osszegek.push(ar);
         td1.innerHTML = user.category;
         td2.innerHTML = user.productname;
         td4.innerHTML = user.unitprice;
@@ -151,14 +170,6 @@ function adatHozzaadas(){
             tr.remove();
         }
 
-        var frissit = document.createElement('input');
-        frissit.type = "button";
-        frissit.className = "btn btn-success";
-        frissit.value = "()";
-        frissit.onclick = function frissites(){
-            td5.innerHTML = egysegar.value * mennyiseg.value;
-            
-        };
 
 
         var mennyiseg = document.createElement('input');
@@ -166,15 +177,35 @@ function adatHozzaadas(){
         mennyiseg.className = "form-control";
         mennyiseg.value = mennyisegID.value;
 
-        let ar = egysegar.value * mennyiseg.value
         
+        let ertek = mennyiseg.value * egysegar.value;
+
+        var frissit = document.createElement('input');
+        frissit.type = "button";
+        frissit.className = "btn btn-success";
+        frissit.value = "()";
+        frissit.onclick = function frissites(){
+            for (let i = 0; i < osszegek.length; i++) {
+                if (osszegek[i] == ertek) {
+                    
+                    osszegek[i] = mennyiseg.value * egysegar.value;
+                    td5.innerHTML = mennyiseg.value * egysegar.value;
+                    fizetendoSzamitas();
+                }
+                
+            }
+            
+        };
+
+        let ar = egysegar.value * mennyiseg.value
+        osszegek.push(ar);
 
         td1.innerHTML = kategoria.value;
         td2.innerHTML = termeknev.value;
         td4.innerHTML = egysegar.value;
         td5.innerHTML = ar;
         
-
+        
         td3.appendChild(mennyiseg);
         td6.appendChild(frissit);
         td6.appendChild(btn);
@@ -206,7 +237,7 @@ function mentes() {
             productname: hozzaadottItemek[i].productname,
             quantity: hozzaadottItemek[i].quantity,
             unitprice: hozzaadottItemek[i].unitprice,
-            price: hozzaadottItemek[i].price
+            price: osszegek[i].price
         };
         console.log(data);
         //promises.push(
@@ -232,8 +263,8 @@ function mentes() {
 
 function fizetendoSzamitas(){
     let osszeg = 0;
-    for (let i = 0; i < hozzaadottItemek.length; i++) {
-        osszeg += hozzaadottItemek[i].price;
+    for (let i = 0; i < osszegek.length; i++) {
+        osszeg += osszegek[i];
         
     }
     
