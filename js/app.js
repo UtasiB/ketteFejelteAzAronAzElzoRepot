@@ -61,13 +61,6 @@ axios.get('http://localhost:3000/hozzaadottak').then(res => {
         btn.className = "btn btn-danger";
         btn.value = "-";
         btn.onclick = function torles(){
-           let termeknev = user.kategoria;
-            for (let i = 0; i < hozzaadottItemek.length; i++) {
-                if (hozzaadottItemek[i].kategoria == termeknev) {
-                    hozzaadottItemek.splice(i,i);
-                }
-                
-            }
             tr.remove();
         }
 
