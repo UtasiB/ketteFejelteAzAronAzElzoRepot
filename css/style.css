@@ -6,8 +6,12 @@ body{
     color: white;
     
 }
+
 #kategoria{
     background-color: goldenrod;
+    color: white;
+}
+.title h1{
     color: white;
 }
 #termeknev{
@@ -75,6 +79,8 @@ footer{
 .Osszeg{
     margin: 20px;
 }
+
+
 
 .minden button{
     margin-left: 20px;

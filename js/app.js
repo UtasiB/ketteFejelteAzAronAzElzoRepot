@@ -92,6 +92,8 @@ axios.get('http://localhost:3000/hozzaadottak').then(res => {
         var mennyiseg = document.createElement('input');
         mennyiseg.type = "number";
         mennyiseg.className = "form-control";
+        mennyiseg.style.color = "black"
+        mennyiseg.style.backgroundColor = "white"
         mennyiseg.value = user.quantity;
        
 
@@ -115,8 +117,21 @@ axios.get('http://localhost:3000/hozzaadottak').then(res => {
         tr.appendChild(td6);
         tbody.appendChild(tr);
         fizetendoSzamitas();
-       
-      
+        
+        
+        td1.style.backgroundColor = "goldenrod"
+        td1.style.color = "white";
+        td2.style.backgroundColor = "goldenrod"
+        td2.style.color = "white";
+        td3.style.backgroundColor = "goldenrod"
+        td3.style.color = "white";
+        td4.style.backgroundColor = "goldenrod"
+        td4.style.color = "white";
+        td5.style.backgroundColor = "goldenrod"
+        td5.style.color = "white";
+        td6.style.backgroundColor = "goldenrod"
+        td6.style.color = "white";
+        
     })
 });
 
@@ -175,6 +190,8 @@ function adatHozzaadas(){
         var mennyiseg = document.createElement('input');
         mennyiseg.type = "number";
         mennyiseg.className = "form-control";
+        mennyiseg.style.color = "black"
+        mennyiseg.style.backgroundColor = "white"
         mennyiseg.value = mennyisegID.value;
 
         
@@ -204,7 +221,7 @@ function adatHozzaadas(){
         td2.innerHTML = termeknev.value;
         td4.innerHTML = egysegar.value;
         td5.innerHTML = ar;
-        
+       
         
         td3.appendChild(mennyiseg);
         td6.appendChild(frissit);
@@ -218,7 +235,19 @@ function adatHozzaadas(){
         tbody.appendChild(tr);
         hozzaadottItemek.push({"category":kategoria.value,"productname":termeknev.value,"quantity":mennyiseg.value,"unitprice":egysegar.value,"price":ar});
         fizetendoSzamitas();
-    
+         
+        td1.style.backgroundColor = "goldenrod"
+        td1.style.color = "white";
+        td2.style.backgroundColor = "goldenrod"
+        td2.style.color = "white";
+        td3.style.backgroundColor = "goldenrod"
+        td3.style.color = "white";
+        td4.style.backgroundColor = "goldenrod"
+        td4.style.color = "white";
+        td5.style.backgroundColor = "goldenrod"
+        td5.style.color = "white";
+        td6.style.backgroundColor = "goldenrod"
+        td6.style.color = "white";
         
    
 }
@@ -237,7 +266,7 @@ function mentes() {
             productname: hozzaadottItemek[i].productname,
             quantity: hozzaadottItemek[i].quantity,
             unitprice: hozzaadottItemek[i].unitprice,
-            price: osszegek[i].price
+            price: hozzaadottItemek[i].price
         };
         console.log(data);
         //promises.push(
@@ -270,5 +299,9 @@ function fizetendoSzamitas(){
     
     fizetendo.value = osszeg;
 
+    for (let i = 0; i < hozzaadottItemek.length; i++) {
+        hozzaadottItemek[i].price = osszegek[i];
+        
+    }
 }
 
